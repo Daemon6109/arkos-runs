@@ -1,29 +1,38 @@
-import { REST, Routes, APIApplicationCommand } from 'discord.js';
-import { loadConfig } from './config/loader';
-import { CommandRegistry } from './commands/index';
+// FILE: src/rest.ts
+import { REST, Routes } from 'discord.js';
+import { SlashCommandBuilder } from '@discordjs/builders';
+import dotenv from 'dotenv';
 
-/**
- * Registers slash commands to the Discord API.
- * @param commands - The command registry containing all commands to register.
- * @returns A promise that resolves when all commands are registered.
- */
-export async function registerCommands(commands: CommandRegistry): Promise<void> {
-  const config = loadConfig();
-  const rest = new REST({ version: '10' }).setToken(config.DISCORD_BOT_TOKEN);
+dotenv.config();
 
-  const commandData: APIApplicationCommand[] = Array.from(commands.values()).map(command => command.data.toJSON());
+const commands = [
+  new SlashCommandBuilder()
+    .setName('ping')
+    .setDescription('Replies with pong!'),
+  new SlashCommandBuilder()
+    .setName('help')
+    .setDescription('Displays a list of commands'),
+  new SlashCommandBuilder()
+    .setName('roll')
+    .setDescription('Rolls a dice'),
+  new SlashCommandBuilder()
+    .setName('avatar')
+    .setDescription('Displays your avatar'),
+].map(command => command.toJSON());
+
+export const registerCommands = async (client: Client, commandCollection: any) => {
+  const rest = new REST({ version: '10' }).setToken(process.env.DISCORD_TOKEN!);
 
   try {
     console.log('Started refreshing application (/) commands.');
 
-    // The put method is used to fully refresh all commands in the guild with the current set
     await rest.put(
-      Routes.applicationCommands(config.DISCORD_CLIENT_ID),
-      { body: commandData },
+      Routes.applicationCommands(process.env.CLIENT_ID!),
+      { body: commands },
     );
 
     console.log('Successfully reloaded application (/) commands.');
   } catch (error) {
     console.error(error);
   }
-}
+};

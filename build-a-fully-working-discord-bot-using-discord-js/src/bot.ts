@@ -1,3 +1,4 @@
+// FILE: src/bot.ts
 import { Client, GatewayIntentBits } from 'discord.js';
 import { createCommandCollection } from './commands';
 import { handleInteraction } from './handlers/interaction';

@@ -1,7 +1,7 @@
 {
   "name": "build-a-fully-working-discord-bot-using-discord-js",
   "version": "1.0.0",
-  "description": "A fully working Discord bot using Discord.js and TypeScript",
+  "description": "SlashBot",
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
@@ -12,7 +12,9 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "discord.js": "^14.14.0"
+    "discord.js": "^14.14.0",
+    "dotenv": "^16.0.3",
+    "@discordjs": "latest"
   },
   "devDependencies": {
     "typescript": "^5.9.3",

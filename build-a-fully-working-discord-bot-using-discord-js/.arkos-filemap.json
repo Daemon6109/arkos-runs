@@ -1,50 +1,69 @@
 [
   {
-    "path": "src/bot.ts",
-    "description": "Main Discord bot entry point with client initialization and event setup",
+    "path": "src/index.ts",
+    "description": "Main bot entry point with createBot export and bot initialization",
     "exports": [
-      "createBot"
-    ]
-  },
-  {
-    "path": "src/commands/index.ts",
-    "description": "Command collection and registration system using Map/Collection",
-    "exports": [
-      "createCommandCollection",
-      "CommandRegistry"
-    ]
-  },
-  {
-    "path": "src/handlers/interaction.ts",
-    "description": "Slash command interaction handler for interactionCreate event",
-    "exports": [
-      "handleInteraction"
+      "createBot",
+      "a"
     ]
   },
   {
     "path": "src/rest.ts",
-    "description": "REST API command registrar for slash commands",
+    "description": "REST API handler for slash command registration",
     "exports": [
       "registerCommands"
     ]
   },
   {
-    "path": "src/config/loader.ts",
-    "description": "Dotenv configuration loader for environment variables",
+    "path": "src/commands/ping.ts",
+    "description": "/ping command handler for latency checks",
     "exports": [
-      "loadConfig"
+      "ping"
     ]
   },
   {
-    "path": "src/middleware/error.ts",
-    "description": "Error handling middleware for command execution",
+    "path": "src/commands/help.ts",
+    "description": "/help command handler for displaying command list",
     "exports": [
-      "errorMiddleware"
+      "help"
     ]
   },
   {
-    "path": "tests/bot.spec.ts",
-    "description": "Unit tests for bot initialization and event handling",
+    "path": "src/commands/roll.ts",
+    "description": "/roll command handler for dice rolling",
+    "exports": [
+      "roll"
+    ]
+  },
+  {
+    "path": "src/commands/avatar.ts",
+    "description": "/avatar command handler for user avatar display",
+    "exports": [
+      "avatar"
+    ]
+  },
+  {
+    "path": "src/events/interactionCreate.ts",
+    "description": "Event handler for processing slash commands",
+    "exports": [
+      "interactionCreate"
+    ]
+  },
+  {
+    "path": "src/events/ready.ts",
+    "description": "Event handler for bot ready status",
+    "exports": [
+      "ready"
+    ]
+  },
+  {
+    "path": "tests/index.spec.ts",
+    "description": "Unit tests for core bot functionality",
+    "exports": []
+  },
+  {
+    "path": "tests/commands.spec.ts",
+    "description": "Unit tests for command handlers",
     "exports": []
   },
   {
@@ -55,6 +74,26 @@
   {
     "path": "tsconfig.json",
     "description": "TypeScript compiler configuration",
+    "exports": []
+  },
+  {
+    "path": ".env",
+    "description": "Environment variables for bot token and other secrets",
+    "exports": []
+  },
+  {
+    "path": "README.md",
+    "description": "Project overview and usage instructions",
+    "exports": []
+  },
+  {
+    "path": "src/commands/interactionCreate.ts",
+    "description": "/interactionCreate command — required by project goal",
+    "exports": []
+  },
+  {
+    "path": "discord.js",
+    "description": "discord.js — required by project goal",
     "exports": []
   }
 ]
