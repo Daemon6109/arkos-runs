@@ -17,7 +17,7 @@
   },
   {
     "path": "src/cli.ts",
-    "description": "CLI entry point with argument parsing and output rendering",
+    "description": "CLI entry point with argument parsing",
     "exports": [
       "run"
     ]
@@ -25,16 +25,6 @@
   {
     "path": "tests/scanner.spec.ts",
     "description": "Unit tests for the scanner module",
-    "exports": []
-  },
-  {
-    "path": "tests/formatter.spec.ts",
-    "description": "Unit tests for the formatter module",
-    "exports": []
-  },
-  {
-    "path": "tests/cli.spec.ts",
-    "description": "Integration tests for CLI functionality",
     "exports": []
   },
   {

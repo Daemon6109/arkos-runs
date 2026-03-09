@@ -1,0 +1,23 @@
+{
+  "name": "password-generator-cli",
+  "version": "1.0.0",
+  "description": "PassGenCLI",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "bun src/index.ts",
+    "dev": "bun --watch src/index.ts",
+    "test": "bun test tests/",
+    "lint": "bunx biome check --apply src/",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "commander": "^9.0.0",
+    "chalk": "^5.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.0",
+    "@types/node": "^20.0.0",
+    "@biomejs/biome": "^1.8.0"
+  }
+}

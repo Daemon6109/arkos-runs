@@ -1,0 +1,72 @@
+[
+  {
+    "path": "src/cli.ts",
+    "description": "CLI entry point handling argument parsing and workflow orchestration",
+    "exports": [
+      "run"
+    ]
+  },
+  {
+    "path": "src/generator.ts",
+    "description": "Secure password generation logic with customizable options",
+    "exports": [
+      "generatePassword"
+    ]
+  },
+  {
+    "path": "src/config.ts",
+    "description": "Configuration parser for CLI arguments and options",
+    "exports": [
+      "parseConfig"
+    ]
+  },
+  {
+    "path": "src/validation.ts",
+    "description": "Input validation for password generation parameters",
+    "exports": [
+      "validateOptions"
+    ]
+  },
+  {
+    "path": "src/help.ts",
+    "description": "Help/info system for displaying usage instructions",
+    "exports": [
+      "displayHelp"
+    ]
+  },
+  {
+    "path": "tests/cli.spec.ts",
+    "description": "Unit tests for CLI argument parsing and workflow",
+    "exports": []
+  },
+  {
+    "path": "tests/generator.spec.ts",
+    "description": "Unit tests for password generation logic",
+    "exports": []
+  },
+  {
+    "path": "tests/config.spec.ts",
+    "description": "Unit tests for configuration parsing",
+    "exports": []
+  },
+  {
+    "path": "tests/validation.spec.ts",
+    "description": "Unit tests for input validation",
+    "exports": []
+  },
+  {
+    "path": "tests/help.spec.ts",
+    "description": "Unit tests for help/info system",
+    "exports": []
+  },
+  {
+    "path": "package.json",
+    "description": "Project configuration with dependencies and scripts",
+    "exports": []
+  },
+  {
+    "path": "tsconfig.json",
+    "description": "TypeScript compiler configuration",
+    "exports": []
+  }
+]

@@ -1,77 +1,111 @@
 import { scanDirectory, FileEntry } from './scanner';
 import { formatSize, formatDate } from './formatter';
-import * as yargs from 'yargs';
+import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
-import { execSync } from 'child_process';
 
-/**
- * Checks if npm is installed.
- * @returns True if npm is installed, false otherwise.
- */
-function isNpmInstalled(): boolean {
-  try {
-    execSync('npm -v', { stdio: 'ignore' });
-    return true;
-  } catch (error) {
-    return false;
+interface CliOptions {
+  directory: string;
+  minSize?: number;
+  maxSize?: number;
+  modifiedAfter?: Date;
+  modifiedBefore?: Date;
+}
+
+function validateOptions(options: CliOptions): void {
+  if (options.minSize !== undefined && options.minSize < 0) {
+    throw new Error('Minimum size must be a non-negative number.');
+  }
+  if (options.maxSize !== undefined && options.maxSize < 0) {
+    throw new Error('Maximum size must be a non-negative number.');
+  }
+  if (options.minSize !== undefined && options.maxSize !== undefined && options.minSize > options.maxSize) {
+    throw new Error('Minimum size cannot be greater than maximum size.');
+  }
+  if (options.modifiedAfter !== undefined && options.modifiedBefore !== undefined && options.modifiedAfter > options.modifiedBefore) {
+    throw new Error('Modified after date cannot be later than modified before date.');
   }
 }
 
-/**
- * Checks if all dependencies are installed.
- * @returns True if all dependencies are installed, false otherwise.
- */
-function areDependenciesInstalled(): boolean {
-  try {
-    execSync('npm list', { stdio: 'ignore' });
+function filterFiles(files: FileEntry[], options: CliOptions): FileEntry[] {
+  return files.filter(file => {
+    if (options.minSize !== undefined && file.size < options.minSize) {
+      return false;
+    }
+    if (options.maxSize !== undefined && file.size > options.maxSize) {
+      return false;
+    }
+    if (options.modifiedAfter !== undefined && file.modified < options.modifiedAfter) {
+      return false;
+    }
+    if (options.modifiedBefore !== undefined && file.modified > options.modifiedBefore) {
+      return false;
+    }
     return true;
-  } catch (error) {
-    return false;
-  }
+  });
 }
 
-/**
- * Runs the CLI application.
- */
-export function run(): void {
-  if (!isNpmInstalled()) {
-    console.error('Error: npm is not installed. Please install npm to proceed.');
-    process.exit(1);
-  }
-
-  if (!areDependenciesInstalled()) {
-    console.error('Error: Missing dependencies. Please run `npm install` to install them.');
-    process.exit(1);
-  }
-
-  yargs(hideBin(process.argv))
-    .command(
-      '$0 <directory>',
-      'Scan a directory and display file statistics',
-      (yargs) => {
-        yargs.positional('directory', {
-          describe: 'The directory to scan',
-          type: 'string',
-        });
-      },
-      async (argv) => {
-        try {
-          const directoryPath = argv.directory as string;
-          const fileEntries = scanDirectory(directoryPath);
-
-          fileEntries.forEach((entry) => {
-            console.log(
-              `${entry.name} (${formatSize(entry.size)}) - ` +
-                `Created: ${formatDate(entry.birthTime)}, ` +
-                `Modified: ${formatDate(entry.modifiedTime)}`
-            );
-          });
-        } catch (error) {
-          console.error(`Error: ${error.message}`);
-          process.exit(1);
-        }
-      }
-    )
+async function run(): Promise<void> {
+  const argv = yargs(hideBin(process.argv))
+    .option('directory', {
+      alias: 'd',
+      describe: 'Directory to scan',
+      type: 'string',
+      demandOption: true,
+    })
+    .option('minSize', {
+      alias: 'm',
+      describe: 'Minimum file size in bytes',
+      type: 'number',
+    })
+    .option('maxSize', {
+      alias: 'M',
+      describe: 'Maximum file size in bytes',
+      type: 'number',
+    })
+    .option('modifiedAfter', {
+      alias: 'a',
+      describe: 'Modified after date (YYYY-MM-DD)',
+      type: 'string',
+    })
+    .option('modifiedBefore', {
+      alias: 'b',
+      describe: 'Modified before date (YYYY-MM-DD)',
+      type: 'string',
+    })
     .help()
     .argv;
+
+  const options: CliOptions = {
+    directory: argv.directory,
+    minSize: argv.minSize,
+    maxSize: argv.maxSize,
+    modifiedAfter: argv.modifiedAfter ? new Date(argv.modifiedAfter) : undefined,
+    modifiedBefore: argv.modifiedBefore ? new Date(argv.modifiedBefore) : undefined,
+  };
+
+  // Validate date strings
+  if (options.modifiedAfter && isNaN(options.modifiedAfter.getTime())) {
+    throw new Error('Invalid date format for --modifiedAfter. Please use YYYY-MM-DD.');
+  }
+  if (options.modifiedBefore && isNaN(options.modifiedBefore.getTime())) {
+    throw new Error('Invalid date format for --modifiedBefore. Please use YYYY-MM-DD.');
+  }
+
+  try {
+    validateOptions(options);
+    const files = await scanDirectory(options.directory);
+    const filteredFiles = filterFiles(files, options);
+
+    console.log(`Scanned ${files.length} files in directory ${options.directory}`);
+    console.log(`Filtered ${filteredFiles.length} files based on the provided criteria:`);
+
+    filteredFiles.forEach(file => {
+      console.log(`- ${file.name} (${formatSize(file.size)}) - Last modified: ${formatDate(file.modified)}`);
+    });
+  } catch (error) {
+    console.error(`Error: ${error.message}`);
+    process.exit(1);
+  }
 }
+
+export { run };
