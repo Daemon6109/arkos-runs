@@ -1,0 +1,58 @@
+[
+  {
+    "path": "src/cli.ts",
+    "description": "CLI entry point with argument parsing and workflow orchestration",
+    "exports": [
+      "run"
+    ]
+  },
+  {
+    "path": "src/parser.ts",
+    "description": "Markdown parser with AST generation",
+    "exports": [
+      "parseMarkdown"
+    ]
+  },
+  {
+    "path": "src/generator.ts",
+    "description": "HTML generation from markdown AST",
+    "exports": [
+      "generateHTML"
+    ]
+  },
+  {
+    "path": "src/highlighter.ts",
+    "description": "Syntax highlighting for code blocks",
+    "exports": [
+      "highlightCode"
+    ]
+  },
+  {
+    "path": "src/config.ts",
+    "description": "Configuration loading and validation",
+    "exports": [
+      "loadConfig",
+      "defaultConfig"
+    ]
+  },
+  {
+    "path": "tests/parser.spec.ts",
+    "description": "Unit tests for markdown parsing",
+    "exports": []
+  },
+  {
+    "path": "tests/generator.spec.ts",
+    "description": "Unit tests for HTML generation",
+    "exports": []
+  },
+  {
+    "path": "package.json",
+    "description": "Project metadata, dependencies, and scripts",
+    "exports": []
+  },
+  {
+    "path": "tsconfig.json",
+    "description": "TypeScript compiler configuration",
+    "exports": []
+  }
+]

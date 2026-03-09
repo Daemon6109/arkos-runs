@@ -1,0 +1,73 @@
+{
+  "goal": "build a markdown to HTML converter CLI with syntax highlighting TypeScript",
+  "timestamp": 1773022449191,
+  "files": [
+    {
+      "path": "src/cli.ts",
+      "purpose": "CLI entry point with argument parsing and workflow orchestration",
+      "exports": [
+        "run"
+      ]
+    },
+    {
+      "path": "src/parser.ts",
+      "purpose": "Markdown parser with AST generation",
+      "exports": [
+        "parseMarkdown"
+      ]
+    },
+    {
+      "path": "src/generator.ts",
+      "purpose": "HTML generation from markdown AST",
+      "exports": [
+        "generateHTML"
+      ]
+    },
+    {
+      "path": "src/highlighter.ts",
+      "purpose": "Syntax highlighting for code blocks",
+      "exports": [
+        "highlightCode"
+      ]
+    },
+    {
+      "path": "src/config.ts",
+      "purpose": "Configuration loading and validation",
+      "exports": [
+        "loadConfig",
+        "defaultConfig"
+      ]
+    },
+    {
+      "path": "tests/parser.spec.ts",
+      "purpose": "Unit tests for markdown parsing",
+      "exports": []
+    },
+    {
+      "path": "tests/generator.spec.ts",
+      "purpose": "Unit tests for HTML generation",
+      "exports": []
+    },
+    {
+      "path": "package.json",
+      "purpose": "Project metadata, dependencies, and scripts",
+      "exports": []
+    },
+    {
+      "path": "tsconfig.json",
+      "purpose": "TypeScript compiler configuration",
+      "exports": []
+    }
+  ],
+  "lessons": [
+    "[accept] worker: code_gen, output_len: 1855",
+    "[accept] worker: file_ops, output_len: 682",
+    "[accept] worker: code_gen, output_len: 1452",
+    "[accept] worker: code_gen, output_len: 2514",
+    "[accept] worker: code_gen, output_len: 2560",
+    "[accept] worker: code_gen, output_len: 1261",
+    "[accept] worker: test_runner, output_len: 3638",
+    "[accept] worker: test_runner, output_len: 2896"
+  ],
+  "runScore": 0.7689174107142859
+}

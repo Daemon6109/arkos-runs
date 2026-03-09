@@ -1,0 +1,25 @@
+{
+  "name": "build-a-markdown-to-html-converter-cli",
+  "version": "1.0.0",
+  "description": "A CLI tool to convert Markdown to HTML with syntax highlighting support",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "bun src/index.ts",
+    "dev": "bun --watch src/index.ts",
+    "test": "bun test tests/",
+    "lint": "bunx biome check --apply src/",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "commander": "^10.0.0",
+    "process": "latest",
+    "inquirer": "^13.3.0",
+    "prismjs": "latest"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3",
+    "@types/node": "^25.0.0",
+    "@biomejs/biome": "^2.4.6"
+  }
+}
