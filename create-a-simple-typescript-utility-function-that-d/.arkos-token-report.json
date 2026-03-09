@@ -1,0 +1,235 @@
+{
+  "records": [
+    {
+      "phase": "vision",
+      "model": "do:coder",
+      "promptTokens": 448,
+      "outputTokens": 664,
+      "totalTokens": 1112,
+      "timestamp": 1773095803817,
+      "compressed": false
+    },
+    {
+      "phase": "planning",
+      "model": "do:planner",
+      "promptTokens": 492,
+      "outputTokens": 1561,
+      "totalTokens": 2053,
+      "timestamp": 1773095822317,
+      "compressed": false
+    },
+    {
+      "phase": "planning",
+      "model": "do:planner",
+      "promptTokens": 479,
+      "outputTokens": 1648,
+      "totalTokens": 2127,
+      "timestamp": 1773095838465,
+      "compressed": false
+    },
+    {
+      "phase": "planning",
+      "model": "do:planner",
+      "promptTokens": 479,
+      "outputTokens": 1832,
+      "totalTokens": 2311,
+      "timestamp": 1773095840158,
+      "compressed": false
+    },
+    {
+      "phase": "planning",
+      "model": "do:planner",
+      "promptTokens": 479,
+      "outputTokens": 2511,
+      "totalTokens": 2990,
+      "timestamp": 1773095848998,
+      "compressed": false
+    },
+    {
+      "phase": "file_ops",
+      "model": "do:coder",
+      "promptTokens": 336,
+      "outputTokens": 883,
+      "totalTokens": 1219,
+      "timestamp": 1773095858226,
+      "compressed": false
+    },
+    {
+      "phase": "file_ops",
+      "model": "do:coder",
+      "promptTokens": 334,
+      "outputTokens": 1803,
+      "totalTokens": 2137,
+      "timestamp": 1773095866852,
+      "compressed": false
+    },
+    {
+      "phase": "test_runner",
+      "model": "do:coder",
+      "promptTokens": 993,
+      "outputTokens": 5342,
+      "totalTokens": 6335,
+      "timestamp": 1773095936032,
+      "compressed": false
+    },
+    {
+      "phase": "code_gen",
+      "model": "do:coder",
+      "promptTokens": 1197,
+      "outputTokens": 415,
+      "totalTokens": 1612,
+      "timestamp": 1773095941754,
+      "compressed": false
+    },
+    {
+      "phase": "code_gen",
+      "model": "do:coder",
+      "promptTokens": 1217,
+      "outputTokens": 284,
+      "totalTokens": 1501,
+      "timestamp": 1773095945554,
+      "compressed": false
+    },
+    {
+      "phase": "code_gen",
+      "model": "do:coder",
+      "promptTokens": 1223,
+      "outputTokens": 398,
+      "totalTokens": 1621,
+      "timestamp": 1773095952514,
+      "compressed": false
+    },
+    {
+      "phase": "code_gen",
+      "model": "do:coder",
+      "promptTokens": 1229,
+      "outputTokens": 392,
+      "totalTokens": 1621,
+      "timestamp": 1773095957460,
+      "compressed": false
+    },
+    {
+      "phase": "code_gen",
+      "model": "do:coder",
+      "promptTokens": 1195,
+      "outputTokens": 3412,
+      "totalTokens": 4607,
+      "timestamp": 1773095986340,
+      "compressed": false
+    },
+    {
+      "phase": "code_gen",
+      "model": "do:coder",
+      "promptTokens": 1199,
+      "outputTokens": 6494,
+      "totalTokens": 7693,
+      "timestamp": 1773095998819,
+      "compressed": false
+    },
+    {
+      "phase": "code_gen",
+      "model": "do:coder",
+      "promptTokens": 1219,
+      "outputTokens": 2012,
+      "totalTokens": 3231,
+      "timestamp": 1773096016659,
+      "compressed": false
+    },
+    {
+      "phase": "code_gen",
+      "model": "do:coder",
+      "promptTokens": 1225,
+      "outputTokens": 4677,
+      "totalTokens": 5902,
+      "timestamp": 1773096062576,
+      "compressed": false
+    },
+    {
+      "phase": "code_gen",
+      "model": "do:coder",
+      "promptTokens": 1215,
+      "outputTokens": 5335,
+      "totalTokens": 6550,
+      "timestamp": 1773096068442,
+      "compressed": false
+    },
+    {
+      "phase": "code_gen",
+      "model": "do:coder",
+      "promptTokens": 1221,
+      "outputTokens": 1895,
+      "totalTokens": 3116,
+      "timestamp": 1773096098792,
+      "compressed": false
+    },
+    {
+      "phase": "code_gen",
+      "model": "do:coder",
+      "promptTokens": 1231,
+      "outputTokens": 5000,
+      "totalTokens": 6231,
+      "timestamp": 1773096109723,
+      "compressed": false
+    },
+    {
+      "phase": "code_gen",
+      "model": "do:coder",
+      "promptTokens": 1227,
+      "outputTokens": 5791,
+      "totalTokens": 7018,
+      "timestamp": 1773096183285,
+      "compressed": false
+    },
+    {
+      "phase": "unknown",
+      "model": "do:coder",
+      "promptTokens": 1092,
+      "outputTokens": 1606,
+      "totalTokens": 2698,
+      "timestamp": 1773096207372,
+      "compressed": false
+    },
+    {
+      "phase": "test_runner",
+      "model": "do:coder",
+      "promptTokens": 1184,
+      "outputTokens": 4249,
+      "totalTokens": 5433,
+      "timestamp": 1773096248649,
+      "compressed": false
+    },
+    {
+      "phase": "builder",
+      "model": "do:coder",
+      "promptTokens": 670,
+      "outputTokens": 2205,
+      "totalTokens": 2875,
+      "timestamp": 1773096272750,
+      "compressed": false
+    },
+    {
+      "phase": "builder",
+      "model": "do:coder",
+      "promptTokens": 678,
+      "outputTokens": 2625,
+      "totalTokens": 3303,
+      "timestamp": 1773096309996,
+      "compressed": false
+    },
+    {
+      "phase": "builder",
+      "model": "do:coder",
+      "promptTokens": 678,
+      "outputTokens": 2312,
+      "totalTokens": 2990,
+      "timestamp": 1773096345048,
+      "compressed": false
+    }
+  ],
+  "totalPromptTokens": 22940,
+  "totalOutputTokens": 65346,
+  "totalTokens": 88286,
+  "tokensSaved": 0,
+  "compressionRounds": 0,
+  "efficiencyRatio": 0
+}

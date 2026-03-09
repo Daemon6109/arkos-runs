@@ -1,0 +1,62 @@
+{
+  "goal": "Create a simple TypeScript utility function that debounces a callback with a configurable delay",
+  "timestamp": 1773096348386,
+  "files": [
+    {
+      "path": "src/debounce.ts",
+      "purpose": "Core debounce implementation with TypeScript",
+      "exports": [
+        "debounce"
+      ]
+    },
+    {
+      "path": "src/types.ts",
+      "purpose": "TypeScript type definitions for debounce parameters",
+      "exports": [
+        "DebounceOptions"
+      ]
+    },
+    {
+      "path": "src/events.ts",
+      "purpose": "Event handling integration for Node.js environments",
+      "exports": [
+        "createEventDebouncer"
+      ]
+    },
+    {
+      "path": "tests/debounce.spec.ts",
+      "purpose": "Unit tests for debounce function",
+      "exports": []
+    },
+    {
+      "path": "tests/events.spec.ts",
+      "purpose": "Event integration tests for Node.js",
+      "exports": []
+    },
+    {
+      "path": "package.json",
+      "purpose": "Project metadata with TypeScript and testing dependencies",
+      "exports": []
+    },
+    {
+      "path": "tsconfig.json",
+      "purpose": "TypeScript compiler configuration for module output",
+      "exports": []
+    },
+    {
+      "path": "Node.js",
+      "purpose": "Node.js — required by project goal",
+      "exports": []
+    }
+  ],
+  "lessons": [
+    "[accept] worker: file_ops, output_len: 314",
+    "[accept] worker: file_ops, output_len: 527",
+    "[accept] worker: test_runner, output_len: 1480",
+    "[accept] worker: code_gen, output_len: 113",
+    "[accept] worker: code_gen, output_len: 833",
+    "[accept] worker: code_gen, output_len: 585",
+    "[accept] worker: test_runner, output_len: 2532"
+  ],
+  "runScore": 0.7704719387755102
+}

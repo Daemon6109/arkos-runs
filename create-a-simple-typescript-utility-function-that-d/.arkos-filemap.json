@@ -1,0 +1,48 @@
+[
+  {
+    "path": "src/debounce.ts",
+    "description": "Core debounce implementation with TypeScript",
+    "exports": [
+      "debounce"
+    ]
+  },
+  {
+    "path": "src/types.ts",
+    "description": "TypeScript type definitions for debounce parameters",
+    "exports": [
+      "DebounceOptions"
+    ]
+  },
+  {
+    "path": "src/events.ts",
+    "description": "Event handling integration for Node.js environments",
+    "exports": [
+      "createEventDebouncer"
+    ]
+  },
+  {
+    "path": "tests/debounce.spec.ts",
+    "description": "Unit tests for debounce function",
+    "exports": []
+  },
+  {
+    "path": "tests/events.spec.ts",
+    "description": "Event integration tests for Node.js",
+    "exports": []
+  },
+  {
+    "path": "package.json",
+    "description": "Project metadata with TypeScript and testing dependencies",
+    "exports": []
+  },
+  {
+    "path": "tsconfig.json",
+    "description": "TypeScript compiler configuration for module output",
+    "exports": []
+  },
+  {
+    "path": "Node.js",
+    "description": "Node.js — required by project goal",
+    "exports": []
+  }
+]
