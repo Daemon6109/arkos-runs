@@ -1,0 +1,20 @@
+---
+
+### 📌 Key Concepts
+
+- `self.original_fstat = os.fstat`: Saves the original `fstat` function so you can restore it later.
+- `os.fstat = mock.MagicMock(...)`: Replaces the `fstat` function with a mock.
+- `self.tearDown()`: Restores the original function after the test.
+
+---
+
+### 🚨 Common Mistakes
+
+- **Not restoring the original function**: This can lead to test contamination (i.e., your tests affect each other).
+- **Incorrect use of `MagicMock` vs `patch`**: `patch` is often a cleaner way to mock functions in tests.
+
+---
+
+### 🧠 If You're Trying to Use `patch`
+
+You can also use `unittest.mock.patch` for a cleaner approach:

@@ -1,0 +1,13 @@
+{
+  "name": "dirlist",
+  "version": "1.0.0",
+  "description": "A simple command-line tool to list directory contents.",
+  "main": "src/dirList.js",
+  "bin": "bin/dirlist.js",
+  "scripts": {
+    "start": "node bin/dirlist.js"
+  },
+  "keywords": ["directory", "list", "cli"],
+  "author": "Your Name",
+  "license": "MIT"
+}

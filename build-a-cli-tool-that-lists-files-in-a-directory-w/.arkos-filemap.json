@@ -1,0 +1,50 @@
+[
+  {
+    "path": "src/scanner.ts",
+    "description": "File system directory scanner with error handling",
+    "exports": [
+      "scanDirectory",
+      "FileEntry"
+    ]
+  },
+  {
+    "path": "src/formatter.ts",
+    "description": "Human-readable formatters for file size and dates",
+    "exports": [
+      "formatSize",
+      "formatDate"
+    ]
+  },
+  {
+    "path": "src/cli.ts",
+    "description": "CLI entry point with argument parsing and output rendering",
+    "exports": [
+      "run"
+    ]
+  },
+  {
+    "path": "tests/scanner.spec.ts",
+    "description": "Unit tests for the scanner module",
+    "exports": []
+  },
+  {
+    "path": "tests/formatter.spec.ts",
+    "description": "Unit tests for the formatter module",
+    "exports": []
+  },
+  {
+    "path": "tests/cli.spec.ts",
+    "description": "Integration tests for CLI functionality",
+    "exports": []
+  },
+  {
+    "path": "package.json",
+    "description": "Project config with dependencies and scripts",
+    "exports": []
+  },
+  {
+    "path": "tsconfig.json",
+    "description": "TypeScript compiler configuration",
+    "exports": []
+  }
+]
