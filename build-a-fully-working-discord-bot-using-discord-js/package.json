@@ -1,0 +1,22 @@
+{
+  "name": "build-a-fully-working-discord-bot-using-discord-js",
+  "version": "1.0.0",
+  "description": "A fully working Discord bot using Discord.js and TypeScript",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "bun src/index.ts",
+    "dev": "bun --watch src/index.ts",
+    "test": "bun test tests/",
+    "lint": "bunx biome check --apply src/",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "discord.js": "^14.14.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3",
+    "@types/node": "^25.0.0",
+    "@biomejs/biome": "^2.4.6"
+  }
+}
