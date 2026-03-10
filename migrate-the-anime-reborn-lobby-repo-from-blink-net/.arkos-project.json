@@ -1,0 +1,104 @@
+{
+  "goal": "Migrate the Anime Reborn Lobby repo from Blink networking to @flamework/networking. The repo is at /mnt/c/Users/Matthew/Downloads/Anime-Reborn-LobbyUI.\n\nTASKS:\n\n1. Add @flamework/networking to the root package.json dependencies (alongside @flamework/core and @flamework/components).\n\n2. Create /mnt/c/Users/Matthew/Downloads/Anime-Reborn-LobbyUI/places/common/src/shared/network.ts\nThis file defines ALL shared network events using @flamework/networking. Use this exact pattern:\n\n```typescript\nimport { GlobalEvents } from \"@flamework/networking\";\n\n// Types used in events\nexport type CategoryPayload = ...; // infer from usage\nexport type PayloadSync = ...; // charm-sync payload\n\ninterface ServerEvents {\n  // Client -> Server\n  atomInit: () => void;\n  atomUpdate: (payload: CategoryPayload) => void;\n  unitAction: (data: { action: string; unit: string }) => void;\n  purchaseShopItem: (data: { shopType: string; itemId: string; amount: number }) => void;\n  claimDailyReward: () => void;\n  createMatch: (settings: { gameMode?: string; privacy?: string; maxPlayers?: number; minPlayers?: number; allowedPlayers?: number[]; customSettings?: string }) => void;\n  joinMatch: (matchId: string) => void;\n  leaveMatch: () => void;\n  listJoinableMatches: () => void;\n}\n\ninterface ClientEvents {\n  // Server -> Client\n  atomSync: (payload: unknown) => void;\n  createMatchResult: (result: { success: boolean; matchId?: string; error?: string }) => void;\n  matchJoined: (matchId: string) => void;\n  matchLeft: (matchId: string) => void;\n  joinableMatches: (matches: Array<{ id: string; gameMode: string; privacy: string; maxPlayers: number; minPlayers: number; playerCount: number; isLocked: boolean; hostUserId: number }>) => void;\n  matchStarted: (matchId: string) => void;\n  matchCancelled: (data: { matchId: string; reason: string }) => void;\n  notifyPlayer: (data: { color: string; message: string; duration: number }) => void;\n}\n\nexport const GlobalEvents = Networking.createEvent<ServerEvents, ClientEvents>();\n```\n\nServer usage: GlobalEvents.server.eventName.connect((player, ...args) => {})\nServer fires to client: GlobalEvents.client.eventName.fire(player, ...args)\nClient usage: GlobalEvents.client.eventName.connect((...args) => {})\nClient fires to server: GlobalEvents.server.eventName.fire(...args)\n\n3. Update these files to replace @network imports with GlobalEvents from \"@shared/network\":\n\na) /mnt/c/Users/Matthew/Downloads/Anime-Reborn-LobbyUI/places/common/src/client/controllers/data.ts\n   OLD: import ClientNetwork from \"@network/client\"; ... ClientNetwork.Common.PlayerData.Atom.sync.on((payload) => ...) ... ClientNetwork.Common.PlayerData.Atom.init.fire()\n   NEW: import { GlobalEvents } from \"@shared/network\"; ... GlobalEvents.client.atomSync.connect((payload) => ...) ... GlobalEvents.server.atomInit.fire()\n\nb) /mnt/c/Users/Matthew/Downloads/Anime-Reborn-LobbyUI/places/common/src/server/services/data_store/index.ts\n   OLD: Network.Common.PlayerData.Atom.init.on((player) => ...) ... Network.Common.PlayerData.Atom.update.on((player, payload) => ...) ... Network.Common.PlayerData.Atom.sync.fire(player, ...)\n   NEW: GlobalEvents.server.atomInit.connect((player) => ...) ... GlobalEvents.server.atomUpdate.connect((player, payload) => ...) ... GlobalEvents.client.atomSync.fire(player, ...)\n\nc) /mnt/c/Users/Matthew/Downloads/Anime-Reborn-LobbyUI/places/common/src/server/services/data_store/inputs/units/equip.ts, favorite.ts, lock.ts, and inputs/quests/kills.ts\n   OLD: Network.Common.PlayerData.Atom.update.on(...)\n   NEW: GlobalEvents.server.atomUpdate.connect(...)\n\nd) /mnt/c/Users/Matthew/Downloads/Anime-Reborn-LobbyUI/places/common/src/server/services/shop.ts\n   OLD: ServerNetwork.Common.Shop.PurchaseShopItem.on((player, data) => ...)\n   NEW: GlobalEvents.server.purchaseShopItem.connect((player, data) => ...)\n\ne) /mnt/c/Users/Matthew/Downloads/Anime-Reborn-LobbyUI/places/common/src/server/services/daily_rewards.ts\n   OLD: ServerNetwork.Common.DailyRewards.ClaimDailyReward.on(...)\n   NEW: GlobalEvents.server.claimDailyReward.connect((player) => ...)\n\nf) /mnt/c/Users/Matthew/Downloads/Anime-Reborn-LobbyUI/places/lobby/src/server/services/match-queue.service.ts\n   Replace all ServerNetwork.Common.Queue.Queue.X.on/fire calls with GlobalEvents equivalents\n\ng) /mnt/c/Users/Matthew/Downloads/Anime-Reborn-LobbyUI/places/lobby/src/server/services/player-units.service.ts\n   OLD: Network.Common.PlayerData.Unit.unitAction.on((Player, data) => ...)\n   NEW: GlobalEvents.server.unitAction.connect((player, data) => ...)\n\nh) /mnt/c/Users/Matthew/Downloads/Anime-Reborn-LobbyUI/places/lobby/src/client/controllers/queue.controller.ts\n   Replace all ClientNetwork.Common.Queue.Queue.X.fire/on calls with GlobalEvents equivalents\n\ni) /mnt/c/Users/Matthew/Downloads/Anime-Reborn-LobbyUI/places/lobby/src/client/controllers/interface/props/network.ts\n   OLD: import Network from \"@network/client\"; export default { update: Network.Common.PlayerData.Atom.update }\n   NEW: import { GlobalEvents } from \"@shared/network\"; export default { update: GlobalEvents.server.atomUpdate }\n\nIMPORTANT: Read each file fully before modifying it. Preserve all existing logic — only change the networking import and call sites. Do NOT touch gameplay files.",
+  "timestamp": 1773101051532,
+  "files": [
+    {
+      "path": "src/dailyCommand.ts",
+      "purpose": "/daily command handler for claiming rewards",
+      "exports": [
+        "DailyCommand"
+      ]
+    },
+    {
+      "path": "src/matchmakingCommand.ts",
+      "purpose": "/matchmaking command for queue management",
+      "exports": [
+        "MatchmakingCommand"
+      ]
+    },
+    {
+      "path": "src/createsCommand.ts",
+      "purpose": "/creates command for unit/action initialization",
+      "exports": [
+        "CreatesCommand"
+      ]
+    },
+    {
+      "path": "src/networkEvents.ts",
+      "purpose": "Type-safe Flamework network event definitions",
+      "exports": [
+        "NetworkEvents"
+      ]
+    },
+    {
+      "path": "src/playerSync.ts",
+      "purpose": "Player state synchronization system",
+      "exports": [
+        "PlayerSyncSystem"
+      ]
+    },
+    {
+      "path": "src/matchQueue.ts",
+      "purpose": "Match queue management with priority logic",
+      "exports": [
+        "MatchQueueManager"
+      ]
+    },
+    {
+      "path": "src/shopRewards.ts",
+      "purpose": "Shop system and daily reward tracking",
+      "exports": [
+        "ShopSystem",
+        "DailyRewardTracker"
+      ]
+    },
+    {
+      "path": "src/unitActions.ts",
+      "purpose": "Unit action validation and execution",
+      "exports": [
+        "UnitActionHandler"
+      ]
+    },
+    {
+      "path": "tests/dailyCommand.spec.ts",
+      "purpose": "Unit tests for /daily command",
+      "exports": []
+    },
+    {
+      "path": "tests/matchmakingCommand.spec.ts",
+      "purpose": "Unit tests for /matchmaking command",
+      "exports": []
+    },
+    {
+      "path": "tests/createsCommand.spec.ts",
+      "purpose": "Unit tests for /creates command",
+      "exports": []
+    },
+    {
+      "path": "package.json",
+      "purpose": "Project metadata with Flamework and TypeScript dependencies",
+      "exports": []
+    },
+    {
+      "path": "tsconfig.json",
+      "purpose": "TypeScript compiler configuration for strict mode and module resolution",
+      "exports": []
+    }
+  ],
+  "lessons": [
+    "[accept] worker: file_ops, output_len: 340",
+    "[accept] worker: file_ops, output_len: 320",
+    "[accept] worker: code_gen, output_len: 873",
+    "[accept] worker: code_gen, output_len: 850",
+    "[accept] worker: code_gen, output_len: 3008",
+    "[accept] worker: code_gen, output_len: 1650",
+    "[accept] worker: test_runner, output_len: 2155",
+    "[accept] worker: code_gen, output_len: 1353",
+    "[accept] worker: code_gen, output_len: 1048",
+    "[accept] worker: test_runner, output_len: 1954",
+    "[accept] worker: code_gen, output_len: 895",
+    "[accept] worker: test_runner, output_len: 2077",
+    "[accept] worker: code_gen, output_len: 1544"
+  ],
+  "runScore": 0.7645604395604396
+}

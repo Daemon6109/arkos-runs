@@ -1,0 +1,84 @@
+[
+  {
+    "path": "src/dailyCommand.ts",
+    "description": "/daily command handler for claiming rewards",
+    "exports": [
+      "DailyCommand"
+    ]
+  },
+  {
+    "path": "src/matchmakingCommand.ts",
+    "description": "/matchmaking command for queue management",
+    "exports": [
+      "MatchmakingCommand"
+    ]
+  },
+  {
+    "path": "src/createsCommand.ts",
+    "description": "/creates command for unit/action initialization",
+    "exports": [
+      "CreatesCommand"
+    ]
+  },
+  {
+    "path": "src/networkEvents.ts",
+    "description": "Type-safe Flamework network event definitions",
+    "exports": [
+      "NetworkEvents"
+    ]
+  },
+  {
+    "path": "src/playerSync.ts",
+    "description": "Player state synchronization system",
+    "exports": [
+      "PlayerSyncSystem"
+    ]
+  },
+  {
+    "path": "src/matchQueue.ts",
+    "description": "Match queue management with priority logic",
+    "exports": [
+      "MatchQueueManager"
+    ]
+  },
+  {
+    "path": "src/shopRewards.ts",
+    "description": "Shop system and daily reward tracking",
+    "exports": [
+      "ShopSystem",
+      "DailyRewardTracker"
+    ]
+  },
+  {
+    "path": "src/unitActions.ts",
+    "description": "Unit action validation and execution",
+    "exports": [
+      "UnitActionHandler"
+    ]
+  },
+  {
+    "path": "tests/dailyCommand.spec.ts",
+    "description": "Unit tests for /daily command",
+    "exports": []
+  },
+  {
+    "path": "tests/matchmakingCommand.spec.ts",
+    "description": "Unit tests for /matchmaking command",
+    "exports": []
+  },
+  {
+    "path": "tests/createsCommand.spec.ts",
+    "description": "Unit tests for /creates command",
+    "exports": []
+  },
+  {
+    "path": "package.json",
+    "description": "Project metadata with Flamework and TypeScript dependencies",
+    "exports": []
+  },
+  {
+    "path": "tsconfig.json",
+    "description": "TypeScript compiler configuration for strict mode and module resolution",
+    "exports": []
+  }
+]
