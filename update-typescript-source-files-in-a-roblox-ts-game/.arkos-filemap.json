@@ -1,0 +1,57 @@
+[
+  {
+    "path": "src/matchmaking.ts",
+    "description": "Matchmaking event handlers with /matchmaking command integration",
+    "exports": [
+      "handleMatchmakingRequest",
+      "MatchmakingEvent"
+    ]
+  },
+  {
+    "path": "src/fire-command.ts",
+    "description": "Implementation of /fire command for testing events",
+    "exports": [
+      "executeFireCommand",
+      "FireEventPayload"
+    ]
+  },
+  {
+    "path": "src/player-data.ts",
+    "description": "Player data synchronization system using GlobalEvents",
+    "exports": [
+      "syncPlayerData",
+      "PlayerState"
+    ]
+  },
+  {
+    "path": "src/quest-progress.ts",
+    "description": "Quest progression tracking with event-based updates",
+    "exports": [
+      "trackQuestProgress",
+      "QuestEvent"
+    ]
+  },
+  {
+    "path": "src/daily-rewards.ts",
+    "description": "Daily reward system with time-based event triggers",
+    "exports": [
+      "checkDailyRewards",
+      "RewardDistribution"
+    ]
+  },
+  {
+    "path": "tests/matchmaking.spec.ts",
+    "description": "Unit tests for matchmaking command and event handlers",
+    "exports": []
+  },
+  {
+    "path": "tests/fire-command.spec.ts",
+    "description": "Test suite for /fire command execution",
+    "exports": []
+  },
+  {
+    "path": "package.json",
+    "description": "Project configuration with Roblox-TS and Flamework dependencies",
+    "exports": []
+  }
+]
